@@ -1,12 +1,14 @@
 import React from "react";
 import { Box, Button, Container, Link, Typography } from "@mui/material";
 import cars from "../images/Cars.png";
+import BMW from "../images/BMW.png";
 import offers from "../images/Offers.png";
 import CallNowButton from "../components/CallNowButton";
 import Slider from "react-slick";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Service from "../components/Service";
 import TopNav from "../components/TopNav";
+import AboutUs from "../components/AboutUs";
 
 export default function Home() {
   const sliderRef = React.useRef(null);
@@ -50,6 +52,31 @@ export default function Home() {
     },
   ];
 
+  const aboutUs = [
+    {
+      headLine: "Comprehensive Insurance",
+      description: "Every ride includes hiring insurance for worry-free travel",
+    },
+    {
+      headLine: "Reliable Fleet",
+      description:
+        "Our vehicles are well-maintained and undergo regular inspections for your safety",
+    },
+    {
+      headLine: "Transparent Pricing",
+      description:
+        "Enjoy competitive rates with no hidden fees. What you see is what you pay.",
+    },
+    {
+      headLine: "Affordable Rates",
+      description: "We offer competitive rates for our services ",
+    },
+    {
+      headLine: "Clean Vehicles",
+      description: "Our vehicles are always clean and well-maintained",
+    },
+  ];
+
   return (
     <Box>
       <Container
@@ -76,7 +103,6 @@ export default function Home() {
             gap: 4,
           }}
         >
-          {/* Heading, Subtext, Contact and Call Button */}
           <Typography
             variant="h1"
             sx={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "20px" }}
@@ -192,34 +218,85 @@ export default function Home() {
           </Button>
         </Box>
       </Box>
-
-      <Container
-        sx={{
-          padding: 0, // Remove any padding
-        }}
-      >
-        {/*  services */}
-        <Box sx={{ textAlign: "center", marginBottom: "50px" }}>
-          <Typography variant="h3">Explore our wide range of</Typography>
-          <Typography
-            variant="h3"
+      {/*  services */}
+      <Box>
+        <Container
+          sx={{
+            padding: 0, // Remove any padding
+          }}
+        >
+          <Box
             sx={{
-              display: "inline-block",
-              backgroundColor: "teal",
-              color: "#eee",
-              borderRadius: "15px",
-              padding: "0 20px",
+              textAlign: "center",
+              marginBottom: "50px",
             }}
           >
-            Services
-          </Typography>
-        </Box>
-        {services.map((service, index) => (
-          <Box key={index}>
-            <Service title={service.service} />
-            <hr style={{ margin: "20px 0" }} />
+            <Typography variant="h3">Explore our wide range of</Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                display: "inline-block",
+                backgroundColor: "teal",
+                color: "#eee",
+                borderRadius: "15px",
+                padding: "0 20px",
+              }}
+            >
+              Services
+            </Typography>
           </Box>
-        ))}
+        </Container>
+        <Box
+          sx={{
+            padding: "150px 0",
+            width: "100%",
+            backgroundColor: "#fafafa",
+            clipPath: "polygon(0% 10%, 100% 0%, 100% 90%, 0% 100%)",
+          }}
+        >
+          <Container>
+            {services.map((service, index) => (
+              <Box key={index}>
+                <Service title={service.service} />
+                <hr style={{ margin: "20px 0" }} />
+              </Box>
+            ))}
+          </Container>
+        </Box>
+      </Box>
+      {/* About us */}
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 3,
+          alignItems: "start",
+        }}
+      >
+        <Box
+          sx={{
+            width: "50%",
+            flexGrow: 1,
+            textAlign: "left",
+            fontWeight: "600",
+          }}
+        >
+          <Typography variant="h4">
+            Our commitment to excellence makes us the preferred taxi service for
+            travelers across the region. Here’s why customers trust us:
+          </Typography>
+          {aboutUs.map((about, index) => (
+            <AboutUs
+              key={index}
+              headLine={about.headLine}
+              description={about.description}
+            />
+          ))}
+        
+        </Box>
+        <Box sx={{ width: "50%", flexGrow: 1 }}>
+          <img src={BMW} alt="BMW" style={{ width: "100%" }} />
+        </Box>
       </Container>
     </Box>
   );
